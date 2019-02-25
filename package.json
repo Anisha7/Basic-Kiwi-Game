@@ -1,0 +1,27 @@
+{
+  "name": "basic-kiwi-game",
+  "version": "1.0.0",
+  "description": "Following the basic kiwi.js game tutorial to learn how to make games using the Kiwi.js library.",
+  "main": "gettingStarted.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anisha7/Basic-Kiwi-Game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anisha7/Basic-Kiwi-Game/issues"
+  },
+  "homepage": "https://github.com/Anisha7/Basic-Kiwi-Game#readme",
+  "dependencies": {
+    "grunt-contrib-connect": "^2.0.0",
+    "node": "^11.10.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-jshint": "^2.0.0"
+  }
+}

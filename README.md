@@ -9,3 +9,7 @@ The code is well commented, explaining how Kiwi works and the logic behind each 
 Reading through the comments as you look through the code would be helpful in the learning process.
 
 # Running the game
+Clone or download the repository
+Run npm install to install dependencies
+Run grunt connect in the terminal
+Open the link displayed
