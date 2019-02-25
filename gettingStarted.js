@@ -72,3 +72,59 @@ myState.create = function(){
     this.addChild( this.background );
     this.addChild( this.character );
 }
+
+// Every game loop cycle, the game will call the update function of the active state. 
+// In our case the update function will be responsible for checking keyboard input, 
+// moving our character, and switching animations. Under the hood, the game will be 
+// updating variables, rendering images and working out the animations, but we don’t 
+// need to worry about any of that.
+myState.update = function() {
+    
+    // IMPORTANT: we need to call the Kiwi.State update prototype function
+    Kiwi.State.prototype.update.call( this );
+    
+    // If our character is crouched we don’t want him to be able to move, 
+    // so we should check if the S (or Down) key was pressed first.
+    // if down key is pressed
+    if ( this.downKey.isDown ) {
+        // if this animation isn't already playing
+        if ( this.character.animation.currentAnimation.name !==
+            ( "crouch" + this.facing ) ) {
+ 
+            this.character.animation.play( "crouch" + this.facing );
+        }
+    // if left key is pressed
+    } else if ( this.leftKey.isDown ) {
+        this.facing = "left";
+        if ( this.character.transform.x > 3 ) {
+            this.character.transform.x -= 3;
+        }
+        // if this animation isn't already playing
+        if ( this.character.animation.currentAnimation.name !== "moveleft" ) {
+            this.character.animation.play( "moveleft" );
+        }
+    // if right key is pressed
+    } else if ( this.rightKey.isDown ) {
+        this.facing = "right";
+        if ( this.character.transform.x < 600 ) {
+            this.character.transform.x += 3;
+        }
+        // if this animation isn't already playing
+        if ( this.character.animation.currentAnimation.name !== "moveright" ) {
+            this.character.animation.play( "moveright" );
+        }
+    // no key is pressed
+    } else {
+        // if this animation isn't already playing
+        if ( this.character.animation.currentAnimation.name !==
+            "idle" + this.facing ) {
+ 
+            this.character.animation.play( "idle" + this.facing );
+         }
+    }
+}
+
+// Now that we have defined our state, we need to add our state to the game’s state manager using the addState method.
+// Lastly we switch the current state to our game state using the switchState method to initialize the game, and we are done!
+myGame.states.addState( myState );
+myGame.states.switchState( "myState" );
